@@ -28,6 +28,36 @@ class EntryPayload(BaseModel):
     remark: str | None = None
 
 
+class ImportPayload(BaseModel):
+    """批量导入维保清单：直接提交外委单位交来的表格文本（CSV 或 JSON 数组）。"""
+
+    content: str = Field(default="", description="CSV 文本或 JSON 数组，表头使用维保编号/维保设备/维保单位等中文列名")
+    filename: str | None = Field(default=None, description="原始文件名，用于辅助判断 CSV / JSON")
+    limit: int | None = Field(default=None, description="本次最多处理多少条数据行，用于分批与断点续导")
+
+
+class ResumePayload(BaseModel):
+    """断点续导：带上次返回的 session_id，从断掉的那一行接着走。"""
+
+    session_id: str
+    limit: int | None = Field(default=None, description="本次最多再处理多少条数据行")
+
+
+class ImportResult(BaseModel):
+    ok: bool
+    message: str
+    session_id: str | None = None
+    done: bool = True
+    next_row: int = 0
+    processed_rows: int = 0
+    total_rows: int = 0
+    added: int = 0
+    updated: int = 0
+    rejected_rows: int = 0
+    batch_rejected: bool = False
+    reject_errors: list[str] = Field(default_factory=list)
+
+
 
 class RegisterEntry(BaseModel):
     """设备登记明细结构。"""

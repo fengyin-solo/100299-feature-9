@@ -23,6 +23,15 @@ body { margin: 0; background: #f6f8fb; color: #1f2937; }
 .stat-value { font-size: 20px; }
 .filter-bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; margin-bottom: 12px; }
 .filter-item span { display: block; font-size: 12px; color: var(--muted); }
+.filter-item input, .filter-item select { min-width: 160px; padding: 6px 8px; border: 1px solid var(--border); border-radius: 6px; font-size: 13px; }
+.btn:disabled { opacity: .55; cursor: not-allowed; }
+.import-panel { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; margin-bottom: 12px; }
+.import-head { display: flex; justify-content: space-between; align-items: center; }
+.import-hint { color: var(--muted); font-size: 12px; line-height: 1.6; margin: 6px 0 10px; }
+.import-controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.import-preview { font-size: 12px; color: var(--muted); margin-top: 8px; }
+.import-errors { margin: 8px 0 0; padding-left: 18px; color: #b42318; font-size: 12px; line-height: 1.7; }
+.import-message { margin: 8px 0 0; font-size: 12px; }
 .data-table { width: 100%; border-collapse: collapse; background: #fff; }
 .data-table th, .data-table td { border: 1px solid var(--border); padding: 8px 10px; font-size: 13px; text-align: left; }
 .empty-state { text-align: center; color: var(--muted); }
@@ -33,3 +42,4 @@ body { margin: 0; background: #f6f8fb; color: #1f2937; }
 .link { border: none; background: none; color: var(--brand); cursor: pointer; padding: 0; }
 .page-foot { display: flex; justify-content: space-between; margin-top: 8px; font-size: 12px; color: var(--muted); }
 .error-text { color: #b42318; }
+.info-text { color: #1f6feb; }
