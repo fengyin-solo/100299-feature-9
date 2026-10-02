@@ -28,6 +28,28 @@ class EntryPayload(BaseModel):
     remark: str | None = None
 
 
+class ImportPayload(BaseModel):
+    """清单导入请求：首次提交带整表行数据，中断续传只带会话号即可。"""
+
+    session_id: str | None = None
+    rows: list[dict[str, Any]] = Field(default_factory=list)
+    chunk_size: int = 50
+
+
+class ImportResult(BaseModel):
+    """导入进度与结果：退回行、批级错误、断点位置都在里面。"""
+
+    ok: bool
+    message: str
+    session_id: str | None = None
+    done: bool = False
+    next_row: int | None = None
+    created: int = 0
+    skipped: int = 0
+    rejected_rows: list[dict[str, Any]] = Field(default_factory=list)
+    errors: list[str] = Field(default_factory=list)
+
+
 
 class RegisterEntry(BaseModel):
     """设备登记明细结构。"""
